@@ -1,6 +1,9 @@
-type ExampleEntity @entity {
-  id: ID!
-  count: BigInt!
-  user: Bytes! # address
-  pid: BigInt! # uint256
+type user @entity {
+  id:ID!
+  pid: BigInt!
+  amount: BigInt! # uint256
+}
+type tvl @entity {
+  id:ID!
+  amount: BigInt! # uint256
 }

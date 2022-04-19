@@ -1,4 +1,4 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,20 +8,14 @@ dataSources:
     source:
       address: "0x6346699A5601ea64536F691be9210D55063CFa25"
       abi: EvermoonFarmChapel
+      startBlock: 18583252
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - Deposit
-        - EmergencyWithdraw
-        - Harvest
-        - LogEvermoonPerSecond
-        - LogPoolAddition
-        - LogSetPool
-        - LogUpdatePool
-        - OwnershipTransferred
-        - Withdraw
+        - user
+        - tvl
       abis:
         - name: EvermoonFarmChapel
           file: ./abis/EvermoonFarmChapel.json
@@ -30,18 +24,6 @@ dataSources:
           handler: handleDeposit
         - event: EmergencyWithdraw(indexed address,indexed uint256,uint256,indexed address)
           handler: handleEmergencyWithdraw
-        - event: Harvest(indexed address,indexed uint256,uint256)
-          handler: handleHarvest
-        - event: LogEvermoonPerSecond(uint256)
-          handler: handleLogEvermoonPerSecond
-        - event: LogPoolAddition(indexed uint256,uint256,indexed address,indexed address)
-          handler: handleLogPoolAddition
-        - event: LogSetPool(indexed uint256,uint256,indexed address,bool)
-          handler: handleLogSetPool
-        - event: LogUpdatePool(indexed uint256,uint64,uint256,uint256)
-          handler: handleLogUpdatePool
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
         - event: Withdraw(indexed address,indexed uint256,uint256,indexed address)
           handler: handleWithdraw
       file: ./src/mapping.ts
